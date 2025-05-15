@@ -4,21 +4,16 @@ from adafruit_servokit import ServoKit
 # Set channels to the number of servo channels on your kit.
 # 8 for FeatherWing, 16 for Shield/HAT/Bonnet.
 kit = ServoKit(channels=16)
+#kit.servo[0].set_pulse_width_range(1000, 2000)
+kit.servo[0].actuation_range = 270
+x = 100
 
-kit.servo[0].angle = 180
-kit.continuous_servo[1].throttle = 1
-time.sleep(1)
-kit.continuous_servo[1].throttle = -1
-time.sleep(1)
-kit.servo[0].angle = 0
-kit.continuous_servo[1].throttle = 0
+while True:
+    #y = float(input(" "))
+    #time.sleep(1)
+    #if y >= 270 or x >= 270:
+        #print("TOO FAR MOTHER FUCKER!")
+    kit.servo[0].angle = (x)
+    
 
 
-
-kit.servo[2].angle = 180
-kit.continuous_servo[2].throttle = 1
-time.sleep(1)
-kit.continuous_servo[2].throttle = -1
-time.sleep(1)
-kit.servo[2].angle = 0
-kit.continuous_servo[1].throttle = 0
