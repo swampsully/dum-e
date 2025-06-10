@@ -83,38 +83,27 @@ class MyController(Controller):
         os.system(quit)
 
             # This block is to controls the base axis #
-    #def on_right_arrow_press(self):
-        #mv_sv0_right()
-    #def on_left_arrow_press(self):
-        #mv_sv0_left()
+    def on_right_arrow_press(self):
+        mv_sv0_right()
+    
+    def on_left_arrow_press(self):
+        mv_sv0_left()
 
         # This block controls the first tilt axis #
-    #def on_up_arrow_press(self):
-        #mv_sv1_up()
-    #def on_down_arrow_press(self):
-        #mv_sv1_down()
-
-    def on_L3_up():
+    def on_up_arrow_press(self):
         mv_sv1_up()
-
-    def on_L3_down():
+    
+    def on_down_arrow_press(self):
         mv_sv1_down()
-
-    def on_L3_left():
-        mv_sv0_left()
-    def on_L3_right():
-        mv_sv0_right() 
-    def on_L3_x_at_rest():
-        pass
-    def on_L3_y_at_rest(self):
-        pass
 
 
         # This block controls the second tilt axis #
     def on_L1_press(self):
         mv_sv2_down()
+
     def on_R1_press(self):
         mv_sv2_up()
+
 controller = MyController(interface="/dev/input/js0")
 controller.listen(timeout=160)
 

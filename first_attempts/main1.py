@@ -10,29 +10,7 @@ kit.servo[1].actuation_range = 180
 kit.servo[2].actuation_range = 180
 kit.servo[3].actuation_range = 180
 
-def on_L3_x_axis(value):
-   global l3_x_min, l3_x_max
-   l3_x_min = min(l3_x_min, value)
-   l3_x_max = max(l3_x_max, value)
-   #... Calibration logic here
-   print("Left stick X:", value)
-
-def calibrate_l3_x():
-    center = (l3_x_min + l3_x_max) / 2
-    range = (l3_x_max - l3_x_min) / 2
-
-    def apply_calibration(value):
-       calibrated_value = (value - center) / range # map to -1..1
-       if abs(calibrated_value) < 0.1 :  #Dead Zone
-           return 0
-       return calibrated_value
-
-    return apply_calibration
-
-# ... Listen to events and later calibrate
-Controller.listen(on_L3_x_axis = on_L3_x_axis)
-l3_x_calibrate = calibrate_l3_x()
- # These are the starting positions for the servos#
+# These are the starting positions for the servos#
 sv0_current_pos = 180
 
 sv1_current_pos = 0

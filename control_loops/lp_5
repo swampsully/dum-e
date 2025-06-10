@@ -33,7 +33,7 @@ startup()
 def mv_sv0_right():
     global sv0_current_pos
     while True:
-        value1 = (sv0_current_pos + 45)
+        value1 = (sv0_current_pos + 5)
         if value1 >= 270:
             value1 = 270
         sv0_current_pos = value1
@@ -42,7 +42,7 @@ def mv_sv0_right():
 def mv_sv0_left():
     global sv0_current_pos
     while True:
-        value1 = (sv0_current_pos - 45)
+        value1 = (sv0_current_pos - 5)
         if value1 <= 0:
             value1 = 0
             break
@@ -52,7 +52,7 @@ def mv_sv0_left():
 def mv_sv1_up():
     global sv1_current_pos
     while True:
-        value1 = (sv1_current_pos + 40)
+        value1 = (sv1_current_pos + 5)
         if value1 >= 180:
             value1 = 180
             break
@@ -62,7 +62,7 @@ def mv_sv1_up():
 def mv_sv1_down():
     global sv1_current_pos
     while True:
-        value1 = (sv1_current_pos - 40)
+        value1 = (sv1_current_pos - 5)
         if value1 < 0:
             value1 = 0
             break
@@ -72,7 +72,7 @@ def mv_sv1_down():
 def mv_sv2_down():
     global sv2_current_pos
     while True:
-        value1 = (sv2_current_pos + 40)
+        value1 = (sv2_current_pos + 5)
         if value1 >= 180:
            value1 = 180
            break
@@ -82,7 +82,7 @@ def mv_sv2_down():
 def mv_sv2_up():
     global sv2_current_pos
     while True:
-        value1 = (sv2_current_pos - 40)
+        value1 = (sv2_current_pos - 5)
         if value1 <= 0:
            value1 = 0
            break
