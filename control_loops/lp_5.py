@@ -3,14 +3,17 @@ import os
 from adafruit_servokit import ServoKit
 import time
 
+# Here are the physical limits of the servos for this this project #
 
 kit = ServoKit(channels=16)
-kit.servo[0].actuation_range = 270
-kit.servo[1].actuation_range = 180
-kit.servo[2].actuation_range = 180
-kit.servo[3].actuation_range = 180
+kit.servo[0].actuation_range = 270 # This is the pan axis #
+kit.servo[1].actuation_range = 180 # This is the first tilt axis #
+kit.servo[2].actuation_range = 180 # This is the second tilt axis #
+kit.servo[3].actuation_range = 180 # This is pan sxis for the wrist #
 
  # These are the starting positions for the servos#
+ 	## These variables store the position value of each axis ##
+
 sv0_current_pos = 180
 
 sv1_current_pos = 0
@@ -30,23 +33,21 @@ def startup():
 
 startup()
 
+
+# Here I am defining the diffent funtions that control each axis #
+
+## Here is the funtion for servo 0 (The Pan axis) ##
 def mv_sv0_right():
     global sv0_current_pos
-    while True:
-        value1 = (sv0_current_pos + 5)
-        if value1 >= 270:
-            value1 = 270
-        sv0_current_pos = value1
+    while sv0_current_pos < 270:
+        (sv0_current_pos += 1)
         kit.servo[0].angle = (sv0_current_pos)
 
+## Here is the funtion for servo 0 (The Pan axis) ##
 def mv_sv0_left():
     global sv0_current_pos
-    while True:
-        value1 = (sv0_current_pos - 5)
-        if value1 <= 0:
-            value1 = 0
-            break
-        sv0_current_pos = value1
+    while sv0_current_pos >0:
+        (sv0_current_pos += -1)
         kit.servo[0].angle = (sv0_current_pos)
 
 def mv_sv1_up():
@@ -93,26 +94,43 @@ def mv_sv2_up():
 class MyController(Controller):
            # This exits the program #
     def on_playstation_button_press(self):
-        startup()
-        os.system(quit)
+     os.system(quit)
 
             # This block is to controls the base axis #
     def on_right_arrow_press(self):
-        mv_sv0_right()
+        #mv_sv0_right()
+    	pass
+
     def on_left_arrow_press(self):
-        mv_sv0_left()
+        #mv_sv0_left()
+    	pass
+
+    def on_left_right_arrow_release (self):
+    	kit.servo[0].angle = (sv0_current_pos)
 
         # This block controls the first tilt axis #
     def on_up_arrow_press(self):
         mv_sv1_up()
+
     def on_down_arrow_press(self):
         mv_sv1_down()
 
+
         # This block controls the second tilt axis #
     def on_L1_press(self):
-        mv_sv2_down()
+        #mv_sv2_down()
+    	mv_sv0_left()
+
+    def on_L1_release (self):
+        kit.servo[0].angle = (sv0_current_pos)
+
+    def on_R1_release (self):
+        kit.serko[0].angle = (sv0_current_pos)
+
     def on_R1_press(self):
-        mv_sv2_up()
+        #mv_sv2_up()
+    	mv_sv0_right()
+
 controller = MyController(interface="/dev/input/js0")
 controller.listen(timeout=160)
 
