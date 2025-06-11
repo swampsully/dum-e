@@ -40,14 +40,14 @@ startup()
 def mv_sv0_right():
     global sv0_current_pos
     while sv0_current_pos < 270:
-        (sv0_current_pos += 1)
+        (sv0_current_pos + 1)
         kit.servo[0].angle = (sv0_current_pos)
 
 ## Here is the funtion for servo 0 (The Pan axis) ##
 def mv_sv0_left():
     global sv0_current_pos
     while sv0_current_pos >0:
-        (sv0_current_pos += -1)
+        (sv0_current_pos - 1)
         kit.servo[0].angle = (sv0_current_pos)
 
 def mv_sv1_up():
