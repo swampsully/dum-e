@@ -21,16 +21,21 @@ startup()
 ## Here is the funtion for servo 0 (The Pan axis) ##
 def mv_sv0_right():
     global sv0_current_pos
-    while sv0_current_pos < 270:
-        sv0_current_pos = (sv0_current_pos + 1)
+    while sv0_current_pos < 275:
+        sv0_current_pos += 1
         kit.servo[0].angle = (sv0_current_pos)
+        if sv0_current_pos == 270
+            break
 
 ## Here is the funtion for servo 0 (The Pan axis) ##
 def mv_sv0_left():
     global sv0_current_pos
     while sv0_current_pos >0:
-        sv0_current_pos = (sv0_current_pos - 1)
         kit.servo[0].angle = (sv0_current_pos)
+        sv0_current_pos += (- 1)
+        if sv0_current_pos == 1
+            break
+
 
 class MyController(Controller):
 
